@@ -47,11 +47,16 @@ sns.histplot(df['Fare'], kde=True, bins=30)
 plt.title('Distribution of Fare')
 plt.show()
 
-# 4. Correlation Matrix
-correlation_matrix = df.corr()
+# Select only numeric columns
+numeric_df = df.select_dtypes(include=['number'])
+
+# 4.Compute the correlation matrix
+correlation_matrix = numeric_df.corr()
+
+# Plot the heatmap
 plt.figure(figsize=(10, 6))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
-plt.title('Correlation Matrix')
+plt.title("Correlation Matrix")
 plt.show()
 
 # 5. Survival Rate by Gender
